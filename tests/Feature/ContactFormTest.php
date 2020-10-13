@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\ContactForm;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
@@ -88,11 +89,12 @@ class ContactFormTest extends TestCase
     /** @test */
     public function contact_form_message_field_must_not_exceeed_500_characters()
     {
+        $faker = Factory::create();
         Livewire::test(ContactForm::class)
             ->set('name', 'John Doe')
             ->set('email', 'john@doe.com')
             ->set('phone', '124242424')
-            ->set('message', Str::random(501))
+            ->set('message', $faker->text(1000))
             ->call('submitForm')
             ->assertHasErrors(['message' => 'max']);
     }

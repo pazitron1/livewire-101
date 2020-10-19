@@ -24,3 +24,7 @@ Route::get('contact', function () {
 Route::get('search', function () {
     return view('search');
 });
+
+Route::get('users', function () {
+    return view('users');
+});

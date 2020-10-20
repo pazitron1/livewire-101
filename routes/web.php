@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,9 @@ Route::get('search', function () {
 Route::get('users', function () {
     return view('users');
 });
+
+Route::get('/posts/{post}', function (Post $post) {
+    return view('posts.show', [
+        'post' => $post,
+    ]);
+})->name('posts.show');

@@ -19,6 +19,7 @@
         </style>
     </head>
     <body>
+        <livewire:poll-example/>
         <livewire:counter/>
         <livewire:scripts />
     </body>

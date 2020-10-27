@@ -30,6 +30,10 @@ Route::get('users', function () {
     return view('users');
 });
 
+Route::get('tags', function () {
+    return view('tags');
+});
+
 Route::get('/posts/{post}', function (Post $post) {
     return view('posts.show', [
         'post' => $post,

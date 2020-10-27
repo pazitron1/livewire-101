@@ -11,14 +11,21 @@ class CommentsSection extends Component
     public $post;
     public $comment;
     public $successMessage;
+
     protected $rules = [
-        'comment' => 'required|min:4'
+        'comment' => 'required|min:4',
+        'post' => 'required'
     ];
+
+    public function mount(Post $post)
+    {
+        $this->post = $post;
+    }
 
     public function postComment()
     {
         $this->validate();
-        sleep(1);
+
         Comment::create([
             'post_id' => $this->post->id,
             'username' => 'Guest',
@@ -29,7 +36,7 @@ class CommentsSection extends Component
 
         $this->comment = '';
 
-        $this->successMessage = 'The comment has been published';
+        $this->successMessage = 'Comment was posted';
     }
     public function render()
     {
